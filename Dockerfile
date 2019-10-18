@@ -18,6 +18,7 @@ telnet \
 curl \
 openssl \
 openresty \
+git \
 && yum clean all \
 && wget -q https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl -O /bin/kubectl \
 && chmod 755 /bin/kubectl \
