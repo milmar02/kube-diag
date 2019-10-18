@@ -30,7 +30,8 @@ openresty \
 && ln -sf /dev/stdout /usr/local/openresty/nginx/logs/access.log \
 && ln -sf /dev/stderr /usr/local/openresty/nginx/logs/error.log 
 
-RUN useradd -rm -d /home/milmar02 -s /bin/bash -g root -G sudo -u 1000 milmar02
+RUN group 'sudo' does not exist
+RUN useradd -rm -d /home/milmar02 -s /bin/bash -g root -u 1000 milmar02
 USER milmar02
 WORKDIR /home/milmar02
 
