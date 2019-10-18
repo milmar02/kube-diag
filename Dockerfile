@@ -18,7 +18,6 @@ telnet \
 curl \
 openssl \
 openresty \
-git \
 && yum clean all \
 && wget -q https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl -O /bin/kubectl \
 && chmod 755 /bin/kubectl \
@@ -31,13 +30,15 @@ git \
 && ln -sf /dev/stdout /usr/local/openresty/nginx/logs/access.log \
 && ln -sf /dev/stderr /usr/local/openresty/nginx/logs/error.log 
 
+RUN useradd -rm -d /home/milmar02 -s /bin/bash -g root -G sudo -u 1000 milmar02
+USER milmar02
+WORKDIR /home/milmar02
+
 ADD nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 ADD entrypoint.sh /entrypoint.sh
 
 RUN chmod -R g+w /usr/local/openresty \
 && chmod g+x /entrypoint.sh
-
-USER 1000000
 
 
 EXPOSE 8080
